@@ -1,0 +1,9 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+_MACOSX
+*\build
+*\nbproject
