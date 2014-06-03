@@ -6,4 +6,4 @@
 *.ear
 _MACOSX
 *\build
-*\nbproject
+#*\nbproject
