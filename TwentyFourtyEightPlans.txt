@@ -1,0 +1,95 @@
+2048
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+o	command prompt version
+o	swad input
+o	array
+o	add new number randomly
+o	when to merge
+o	keep score
+o	know when won and lost
+	highscore
+	two editors
+	alignment of numbers
+	allow keep playing
+
+CODE
+--------------------------------------------------
+Create java app named: TwentyFourtyEight
+start with methods:
+int[][] grid = new int[4][4];
+int score = 0;
+int highscore = 0;
+boolean alreadyWon = false;
+
+public static void main(String[] args) {
+	readHighscore()
+	addNewNum()
+	addNewNum()
+	while keepGoing(){
+		display()
+		if checkForWin()   break
+		moveAndMerge()
+		addNewNum()
+		
+	}
+	
+}	
+public void display() {displays grid
+	print grid & highscore & score
+}
+public void moveAndMerge() {
+	do
+	{
+		get move direction from user
+		case: stopLooping = mMdir()
+	}while(stopLooping)
+}
+public boolean keepGoing() {
+	check all spaces for 0
+	if no 0, check adjacent alike numbers
+	if none then return false
+	else return true
+}
+public void addNewNum() {
+	check random space for 0
+	if 0 then randomly generate 2/4
+}
+** M&M is not a food. it's moveAndMerge
+public boolean MMUp(){ **every time merge is written, call updateScore()
+		shift all loose numbers to end
+		if number is the same as one moving into, merge from
+			 direction moving
+		shift all loose numbers to end again
+		merge again if needed
+		if any tiles moved, return true
+		else false}
+public boolean mMDown(){}
+public boolean mMRight(){}
+public boolean mMLeft(){}
+public void updateScore(int mergedNumber)
+{
+	score = score + mergedNumber
+	if score > highscore
+		highscore = score;
+		writeHighscore()
+}
+public boolean checkForWin()
+{
+	if alreadyWon == false{
+		check all array spots
+		if array number is 2048 bool true
+		if bool true, set alreadyWon = true & print first then ask if they want to continue.
+		if yes, return false. if no then return true.
+	}return false;
+}
+public void writeHighScore()
+{
+	open txtfile
+	write highscore
+}
+public void readHighscore()
+{
+	open txtfile
+	if exist, read highscore
+	else highscore = 0;
+}

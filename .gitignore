@@ -7,3 +7,5 @@
 _MACOSX
 *\build
 #*\nbproject
+/twentyfourtyeight/build/
+/twentyfourtyeight/dist/
