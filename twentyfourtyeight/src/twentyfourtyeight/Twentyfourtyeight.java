@@ -94,10 +94,11 @@ public class Twentyfourtyeight {
     {
         Random rand = new Random();
         int r = rand.nextInt(10);
-        if(r < 8)
+        System.out.println("number is " + r);
+        if(r < 9)
         {
             return 2;
         }
-        return 4;
+        return 4;  
     }
 }
