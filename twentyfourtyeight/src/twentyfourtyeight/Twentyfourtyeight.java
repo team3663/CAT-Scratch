@@ -2,6 +2,7 @@
 package twentyfourtyeight;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Twentyfourtyeight {
     public static final int HEIGHT = 4;
@@ -10,20 +11,24 @@ public class Twentyfourtyeight {
     public static int currentScore = 0;
     public static int highScore = 0;
     public static int turns = 0;
+    public static Scanner sc = new Scanner(System.in);
+    public static boolean stopLooping = false;
+    public static String dir;
     
     public static void main(String[] args) {
-        grid[0][0] = 5;
-        grid[0][2] = 5;
-        grid[1][1] = 5;
-        grid[1][3] = 5;
-        grid[2][0] = 5;
-        grid[2][2] = 5;
-        grid[3][1] = 5;
-        grid[3][3] = 5;
+        grid[0][0] = 2;
+        grid[0][2] = 2;
+        grid[1][1] = 2;
+        grid[1][3] = 2;
+        grid[2][0] = 2;
+        grid[2][2] = 2;
+        grid[3][1] = 2;
+        grid[3][3] = 2;
         Display();
         AddNewNum();
         Display();
-        
+        moveAndMerge();
+        Display();
     }
     public static void Display()
     {
@@ -90,4 +95,80 @@ public class Twentyfourtyeight {
             }
         }
     }
+    public static void moveAndMerge()
+    {
+        dir = sc.next();
+        do
+        {
+            switch(dir)
+            {
+                case "a":
+                    mMLeft();
+                    break;
+           /*     case "w":
+                    mMUp();
+                    break;
+                case "s":
+                    mMDown();
+                    break;
+                case "d":
+                    mMRight();
+                    break;*/
+            }
+        }while(stopLooping == false);
+    }
+    public static void mMLeft()
+    {
+        for (int y = 0;y < 4;y++)
+        {
+            if (grid[y][0] == 0)
+            {
+                while (grid[y][0] == 0)
+                {
+                    for (int m = 1;m < 4;m++)
+                    {
+                        if (grid[y][m] > 0)
+                        {
+                            grid[y][0] = grid[y][m];
+                            grid[y][m] = 0;
+                        }
+                    }
+                }
+            }
+            for (int i = 1;i < 4;i++)
+            {
+                if (grid[y][0] == grid[y][i])
+                {
+                    grid[y][0] = 2*grid[y][0];
+                    grid[y][i] = 0;
+                    stopLooping = true;
+                }
+                else
+                {
+                    for (int j = 1;j < 4;j++)
+                    {
+                        if (grid[y][j] == 0)
+                        {
+                            grid[y][j] = grid[y][i];
+                            grid[y][i] = 0;
+                            stopLooping = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+   /* public void mMUp()
+    {
+        
+    }
+    public void mMDown()
+    {
+        
+    }
+    public void mMRight()
+    {
+        
+    }
+}*/
