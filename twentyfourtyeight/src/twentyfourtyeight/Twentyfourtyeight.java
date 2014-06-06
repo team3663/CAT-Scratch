@@ -12,16 +12,32 @@ public class Twentyfourtyeight {
     public static int turns = 0;
     
     public static void main(String[] args) {
-        grid[0][0] = 5;
-        grid[0][2] = 5;
-        grid[1][1] = 5;
-        grid[1][3] = 5;
-        grid[2][0] = 5;
-        grid[2][2] = 5;
-        grid[3][1] = 5;
-        grid[3][3] = 5;
+        grid[0][0] = 1;
+        grid[0][1] = 2;
+        grid[0][2] = 3;
+        grid[0][3] = 4;
+        grid[1][0] = 5;
+        grid[1][1] = 6;
+        grid[1][2] = 7;
+        grid[1][3] = 8;
+        grid[2][0] = 9;
+        grid[2][1] = 10;
+        grid[2][2] = 11;
+        grid[2][3] = 12;
+        grid[3][0] = 14;
+        grid[3][1] = 14;
+        grid[3][2] = 15;
+        grid[3][3] = 16;
         Display();
-        AddNewNum();
+        if(!KeepGoing())
+        {
+            System.out.println("this is madness");
+        }
+        else
+        {
+            //AddNewNum();
+            System.out.println("lalalala");
+        }
         Display();
         
     }
@@ -100,5 +116,33 @@ public class Twentyfourtyeight {
             return 2;
         }
         return 4;  
+    }
+    public static boolean KeepGoing()
+    {
+        for(int x = 0; x < WIDTH; x++)
+        {
+            for(int y = 0; y< HEIGHT; y++)
+            {
+                if(grid[x][y] == 0)
+                {
+                    return true;
+                }
+                if(x +1 < WIDTH)
+                {
+                    if(grid[x][y] == grid[x + 1][y])
+                    {
+                        return true;
+                    }
+                }
+                if(y + 1 < HEIGHT)
+                {
+                    if(grid[x][y] == grid[x][y + 1])
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
