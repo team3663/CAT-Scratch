@@ -95,6 +95,7 @@ public class Twentyfourtyeight {
             }
         }
     }
+    //comment to test github push
     public static void moveAndMerge()
     {
         dir = sc.next();
