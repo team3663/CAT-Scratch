@@ -86,11 +86,11 @@ public class Twentyfourtyeight {
             for(int x = 0; x < WIDTH; x ++){
                 if(grid[x][y] == 0)
                 {
+                    if (r == 0){
+                        grid[x][y] = SemiRandomTwoOrFour();
+                        return;
+                    }
                     r--;
-                }
-                if (r == 0){
-                    grid[x][y] = 2;
-                    return;
                 }
             }
         }
@@ -213,6 +213,17 @@ public class Twentyfourtyeight {
             }
         }
         */
+    }
+    public static int SemiRandomTwoOrFour()
+    {
+        Random rand = new Random();
+        int r = rand.nextInt(10);
+        System.out.println("number is " + r);
+        if(r < 9)
+        {
+            return 2;
+        }
+        return 4;  
     }
 }
    /* public void mMLeft()
