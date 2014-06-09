@@ -27,7 +27,7 @@ public class Twentyfourtyeight {
         grid[3][0] = 14;
         grid[3][1] = 14;
         grid[3][2] = 15;
-        grid[3][3] = 16;
+        grid[3][3] = 20;
         Display();
         if(!KeepGoing())
         {
