@@ -103,13 +103,13 @@ public class Twentyfourtyeight {
         {
             switch(dir)
             {
-                case "a":
+           /*     case "a":
                     mMLeft();
-                    break;
-           /*     case "w":
+                    break;*/
+                case "w":
                     mMUp();
                     break;
-                case "s":
+         /*       case "s":
                     mMDown();
                     break;
                 case "d":
@@ -118,8 +118,61 @@ public class Twentyfourtyeight {
             }
         }while(stopLooping == false);
     }
-    public static void mMLeft()
+    public static void mMUp()
     {
+        for (int y = 0;y < 4;y++)
+        {
+            for (int x = 0;x < 4;x++)
+            {
+                if (grid[x][y] == 0)
+                {
+                    for (int j = y;j < 4;j++)
+                    {
+                        if (grid[x][j] != 0)
+                        {
+                            grid[x][y] = grid[x][j];
+                            grid[x][j] = 0;
+                            stopLooping = true;
+                            break;
+                        }
+                    }
+                }
+            }
+       /*     for (int x = 1;x < 4;x++)
+            {
+                if (grid[x-1][y] == grid[x][y])
+                {
+                    grid[x-1][y] = 2*grid[x][y];
+                    grid[x][y] = 0;
+                }
+            }
+     /*       for (int x = 0;x < 4;x++)
+            {
+                for (int compareNum = 1;compareNum < 4;compareNum++)
+                {
+                    if (grid[x][y] == grid[x][compareNum])
+                    {
+                        grid[x][y] = 2*grid[x][y];
+                        grid[x][compareNum] = 0;
+                        for (int i = compareNum;i < 4;i++)
+                        {
+                            if (grid[x][i] != 0)
+                            {
+                                grid[x][compareNum] = grid[x][i];
+                                grid[x][i] = 0;
+                                if (compareNum < 3)
+                                {
+                                    compareNum++;
+                                }
+                                break;
+                            }
+                        }
+                        stopLooping = true;
+                    }
+                }
+            }*/
+        }
+        /*temp not using & remember code below is for mMUp()
         for (int y = 0;y < 4;y++)
         {
             if (grid[y][0] == 0)
@@ -146,21 +199,23 @@ public class Twentyfourtyeight {
                 }
                 else
                 {
-                    for (int j = 1;j < 4;j++)
+                    for (int j = i;j < 4;j++)
                     {
                         if (grid[y][j] == 0)
                         {
                             grid[y][j] = grid[y][i];
                             grid[y][i] = 0;
                             stopLooping = true;
+                            break;
                         }
                     }
                 }
             }
         }
+        */
     }
 }
-   /* public void mMUp()
+   /* public void mMLeft()
     {
         
     }
