@@ -2,6 +2,7 @@
 package twentyfourtyeight;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Twentyfourtyeight {
     public static final int HEIGHT = 4;
@@ -10,8 +11,12 @@ public class Twentyfourtyeight {
     public static int currentScore = 0;
     public static int highScore = 0;
     public static int turns = 0;
+    public static Scanner sc = new Scanner(System.in);
+    public static boolean stopLooping = false;
+    public static String dir;
     
     public static void main(String[] args) {
+<<<<<<< HEAD
         grid[0][0] = 1;
         grid[0][1] = 2;
         grid[0][2] = 3;
@@ -28,6 +33,16 @@ public class Twentyfourtyeight {
         grid[3][1] = 14;
         grid[3][2] = 15;
         grid[3][3] = 20;
+=======
+        grid[0][0] = 2;
+        grid[0][2] = 2;
+        grid[1][1] = 2;
+        grid[1][3] = 2;
+        grid[2][0] = 2;
+        grid[2][2] = 2;
+        grid[3][1] = 2;
+        grid[3][3] = 2;
+>>>>>>> 8416a22d0be196da143eded9c22b707c1d78a1d9
         Display();
         if(!KeepGoing())
         {
@@ -39,7 +54,8 @@ public class Twentyfourtyeight {
             System.out.println("lalalala");
         }
         Display();
-        
+        moveAndMerge();
+        Display();
     }
     public static void Display()
     {
@@ -106,6 +122,125 @@ public class Twentyfourtyeight {
             }
         }
     }
+    //comment to test github push
+    public static void moveAndMerge()
+    {
+        dir = sc.next();
+        do
+        {
+            switch(dir)
+            {
+           /*     case "a":
+                    mMLeft();
+                    break;*/
+                case "w":
+                    mMUp();
+                    break;
+         /*       case "s":
+                    mMDown();
+                    break;
+                case "d":
+                    mMRight();
+                    break;*/
+            }
+        }while(stopLooping == false);
+    }
+    public static void mMUp()
+    {
+        for (int y = 0;y < 4;y++)
+        {
+            for (int x = 0;x < 4;x++)
+            {
+                if (grid[x][y] == 0)
+                {
+                    for (int j = y;j < 4;j++)
+                    {
+                        if (grid[x][j] != 0)
+                        {
+                            grid[x][y] = grid[x][j];
+                            grid[x][j] = 0;
+                            stopLooping = true;
+                            break;
+                        }
+                    }
+                }
+            }
+       /*     for (int x = 1;x < 4;x++)
+            {
+                if (grid[x-1][y] == grid[x][y])
+                {
+                    grid[x-1][y] = 2*grid[x][y];
+                    grid[x][y] = 0;
+                }
+            }
+     /*       for (int x = 0;x < 4;x++)
+            {
+                for (int compareNum = 1;compareNum < 4;compareNum++)
+                {
+                    if (grid[x][y] == grid[x][compareNum])
+                    {
+                        grid[x][y] = 2*grid[x][y];
+                        grid[x][compareNum] = 0;
+                        for (int i = compareNum;i < 4;i++)
+                        {
+                            if (grid[x][i] != 0)
+                            {
+                                grid[x][compareNum] = grid[x][i];
+                                grid[x][i] = 0;
+                                if (compareNum < 3)
+                                {
+                                    compareNum++;
+                                }
+                                break;
+                            }
+                        }
+                        stopLooping = true;
+                    }
+                }
+            }*/
+        }
+        /*temp not using & remember code below is for mMUp()
+        for (int y = 0;y < 4;y++)
+        {
+            if (grid[y][0] == 0)
+            {
+                while (grid[y][0] == 0)
+                {
+                    for (int m = 1;m < 4;m++)
+                    {
+                        if (grid[y][m] > 0)
+                        {
+                            grid[y][0] = grid[y][m];
+                            grid[y][m] = 0;
+                        }
+                    }
+                }
+            }
+            for (int i = 1;i < 4;i++)
+            {
+                if (grid[y][0] == grid[y][i])
+                {
+                    grid[y][0] = 2*grid[y][0];
+                    grid[y][i] = 0;
+                    stopLooping = true;
+                }
+                else
+                {
+                    for (int j = i;j < 4;j++)
+                    {
+                        if (grid[y][j] == 0)
+                        {
+                            grid[y][j] = grid[y][i];
+                            grid[y][i] = 0;
+                            stopLooping = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        */
+    }
     public static int SemiRandomTwoOrFour()
     {
         Random rand = new Random();
@@ -146,3 +281,16 @@ public class Twentyfourtyeight {
         return false;
     }
 }
+   /* public void mMLeft()
+    {
+        
+    }
+    public void mMDown()
+    {
+        
+    }
+    public void mMRight()
+    {
+        
+    }
+}*/
