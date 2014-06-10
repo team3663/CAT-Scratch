@@ -17,7 +17,6 @@ public class Twentyfourtyeight {
     public static void main(String[] args) {
         grid[0][0] = 2;
         grid[0][1] = 0;
-<<<<<<< HEAD
         grid[0][2] = 0;
         grid[0][3] = 2;
         grid[1][0] = 0;
@@ -32,22 +31,6 @@ public class Twentyfourtyeight {
         grid[3][1] = 2;
         grid[3][2] = 0;
         grid[3][3] = 0;
-=======
-        grid[0][2] = 2;
-        grid[0][3] = 0;
-        grid[1][0] = 0;
-        grid[1][1] = 2;
-        grid[1][2] = 0;
-        grid[1][3] = 2;
-        grid[2][0] = 2;
-        grid[2][1] = 0;
-        grid[2][2] = 2;
-        grid[2][3] = 0;
-        grid[3][0] = 2;
-        grid[3][1] = 2;
-        grid[3][2] = 0;
-        grid[3][3] = 2;
->>>>>>> Angelique
         Display();
         if(!KeepGoing())
         {
@@ -138,7 +121,7 @@ public class Twentyfourtyeight {
             dir = dir.toLowerCase();
             if((dir.contains("1")) || (dir.contains("up")) || (dir.contains("w")))
             {
-                mMUp();
+                MMUp();
             }
             if((dir.contains("2")) || (dir.contains("down")) || (dir.contains("s")))
             {
@@ -148,21 +131,6 @@ public class Twentyfourtyeight {
             }
             if((dir.contains("4")) || (dir.contains("right")) || (dir.contains("d")))
             {
-<<<<<<< HEAD
-=======
-                case "a":
-                    MMLeft();
-                    break;
-                case "w":
-                    MMUp();
-                    break;
-                case "s":
-                    MMDown();
-                    break;
-                case "d":
-                    MMRight();
-                    break;
->>>>>>> Angelique
             }
         }while(stopLooping == false);
     }
