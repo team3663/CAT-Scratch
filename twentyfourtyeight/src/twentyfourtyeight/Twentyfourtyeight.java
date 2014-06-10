@@ -13,36 +13,24 @@ public class Twentyfourtyeight {
     public static int turns = 0;
     public static Scanner sc = new Scanner(System.in);
     public static boolean stopLooping = false;
-    public static String dir;
     
     public static void main(String[] args) {
-<<<<<<< HEAD
-        grid[0][0] = 1;
-        grid[0][1] = 2;
-        grid[0][2] = 3;
-        grid[0][3] = 4;
-        grid[1][0] = 5;
-        grid[1][1] = 6;
-        grid[1][2] = 7;
-        grid[1][3] = 8;
-        grid[2][0] = 9;
-        grid[2][1] = 10;
-        grid[2][2] = 11;
-        grid[2][3] = 12;
-        grid[3][0] = 14;
-        grid[3][1] = 14;
-        grid[3][2] = 15;
-        grid[3][3] = 20;
-=======
         grid[0][0] = 2;
-        grid[0][2] = 2;
-        grid[1][1] = 2;
-        grid[1][3] = 2;
-        grid[2][0] = 2;
+        grid[0][1] = 0;
+        grid[0][2] = 0;
+        grid[0][3] = 2;
+        grid[1][0] = 0;
+        grid[1][1] = 0;
+        grid[1][2] = 2;
+        grid[1][3] = 0;
+        grid[2][0] = 0;
+        grid[2][1] = 0;
         grid[2][2] = 2;
+        grid[2][3] = 0;
+        grid[3][0] = 0;
         grid[3][1] = 2;
-        grid[3][3] = 2;
->>>>>>> 8416a22d0be196da143eded9c22b707c1d78a1d9
+        grid[3][2] = 0;
+        grid[3][3] = 0;
         Display();
         if(!KeepGoing())
         {
@@ -125,23 +113,23 @@ public class Twentyfourtyeight {
     //comment to test github push
     public static void moveAndMerge()
     {
-        dir = sc.next();
         do
         {
-            switch(dir)
+            System.out.println("1: Up,    w\n2: Down,  s\n3: Left,  a\n4: Right, d");
+            String dir = sc.nextLine();
+            dir = dir.toLowerCase();
+            if((dir.contains("1")) || (dir.contains("up")) || (dir.contains("w")))
             {
-           /*     case "a":
-                    mMLeft();
-                    break;*/
-                case "w":
-                    mMUp();
-                    break;
-         /*       case "s":
-                    mMDown();
-                    break;
-                case "d":
-                    mMRight();
-                    break;*/
+                mMUp();
+            }
+            if((dir.contains("2")) || (dir.contains("down")) || (dir.contains("s")))
+            {
+            }
+            if((dir.contains("3")) || (dir.contains("left")) || (dir.contains("a")))
+            {
+            }
+            if((dir.contains("4")) || (dir.contains("right")) || (dir.contains("d")))
+            {
             }
         }while(stopLooping == false);
     }
