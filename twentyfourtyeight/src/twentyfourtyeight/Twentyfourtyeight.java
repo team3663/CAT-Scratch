@@ -16,33 +16,22 @@ public class Twentyfourtyeight {
     public static String dir;
     
     public static void main(String[] args) {
-<<<<<<< HEAD
-        grid[0][0] = 1;
-        grid[0][1] = 2;
-        grid[0][2] = 3;
-        grid[0][3] = 4;
-        grid[1][0] = 5;
-        grid[1][1] = 6;
-        grid[1][2] = 7;
-        grid[1][3] = 8;
-        grid[2][0] = 9;
-        grid[2][1] = 10;
-        grid[2][2] = 11;
-        grid[2][3] = 12;
-        grid[3][0] = 14;
-        grid[3][1] = 14;
-        grid[3][2] = 15;
-        grid[3][3] = 20;
-=======
         grid[0][0] = 2;
+        grid[0][1] = 0;
         grid[0][2] = 2;
+        grid[0][3] = 0;
+        grid[1][0] = 0;
         grid[1][1] = 2;
+        grid[1][2] = 0;
         grid[1][3] = 2;
         grid[2][0] = 2;
+        grid[2][1] = 0;
         grid[2][2] = 2;
+        grid[2][3] = 0;
+        grid[3][0] = 2;
         grid[3][1] = 2;
+        grid[3][2] = 0;
         grid[3][3] = 2;
->>>>>>> 8416a22d0be196da143eded9c22b707c1d78a1d9
         Display();
         if(!KeepGoing())
         {
@@ -53,8 +42,9 @@ public class Twentyfourtyeight {
             //AddNewNum();
             System.out.println("lalalala");
         }
+        AddNewNum();
         Display();
-        moveAndMerge();
+        MoveAndMerge();
         Display();
     }
     public static void Display()
@@ -123,123 +113,27 @@ public class Twentyfourtyeight {
         }
     }
     //comment to test github push
-    public static void moveAndMerge()
+    public static void MoveAndMerge()
     {
         dir = sc.next();
         do
         {
             switch(dir)
             {
-           /*     case "a":
-                    mMLeft();
-                    break;*/
-                case "w":
-                    mMUp();
+                case "a":
+                    MMLeft();
                     break;
-         /*       case "s":
-                    mMDown();
+                case "w":
+                    MMUp();
+                    break;
+                case "s":
+                    MMDown();
                     break;
                 case "d":
-                    mMRight();
-                    break;*/
+                    MMRight();
+                    break;
             }
         }while(stopLooping == false);
-    }
-    public static void mMUp()
-    {
-        for (int y = 0;y < 4;y++)
-        {
-            for (int x = 0;x < 4;x++)
-            {
-                if (grid[x][y] == 0)
-                {
-                    for (int j = y;j < 4;j++)
-                    {
-                        if (grid[x][j] != 0)
-                        {
-                            grid[x][y] = grid[x][j];
-                            grid[x][j] = 0;
-                            stopLooping = true;
-                            break;
-                        }
-                    }
-                }
-            }
-       /*     for (int x = 1;x < 4;x++)
-            {
-                if (grid[x-1][y] == grid[x][y])
-                {
-                    grid[x-1][y] = 2*grid[x][y];
-                    grid[x][y] = 0;
-                }
-            }
-     /*       for (int x = 0;x < 4;x++)
-            {
-                for (int compareNum = 1;compareNum < 4;compareNum++)
-                {
-                    if (grid[x][y] == grid[x][compareNum])
-                    {
-                        grid[x][y] = 2*grid[x][y];
-                        grid[x][compareNum] = 0;
-                        for (int i = compareNum;i < 4;i++)
-                        {
-                            if (grid[x][i] != 0)
-                            {
-                                grid[x][compareNum] = grid[x][i];
-                                grid[x][i] = 0;
-                                if (compareNum < 3)
-                                {
-                                    compareNum++;
-                                }
-                                break;
-                            }
-                        }
-                        stopLooping = true;
-                    }
-                }
-            }*/
-        }
-        /*temp not using & remember code below is for mMUp()
-        for (int y = 0;y < 4;y++)
-        {
-            if (grid[y][0] == 0)
-            {
-                while (grid[y][0] == 0)
-                {
-                    for (int m = 1;m < 4;m++)
-                    {
-                        if (grid[y][m] > 0)
-                        {
-                            grid[y][0] = grid[y][m];
-                            grid[y][m] = 0;
-                        }
-                    }
-                }
-            }
-            for (int i = 1;i < 4;i++)
-            {
-                if (grid[y][0] == grid[y][i])
-                {
-                    grid[y][0] = 2*grid[y][0];
-                    grid[y][i] = 0;
-                    stopLooping = true;
-                }
-                else
-                {
-                    for (int j = i;j < 4;j++)
-                    {
-                        if (grid[y][j] == 0)
-                        {
-                            grid[y][j] = grid[y][i];
-                            grid[y][i] = 0;
-                            stopLooping = true;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        */
     }
     public static int SemiRandomTwoOrFour()
     {
@@ -280,17 +174,71 @@ public class Twentyfourtyeight {
         }
         return false;
     }
+    public static void MMLeft()
+    {
+        for (int y = 0;y < 4;y++)
+        {
+            for (int x = 0;x < 4;x++)
+            {
+                if (grid[x][y] == 0)
+                {
+                    for (int j = x;j < 4;j++)
+                    {
+                        if (grid[x][j] != 0)
+                        {
+                            grid[x][y] = grid[x][j];
+                            grid[x][j] = 0;
+                            stopLooping = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public static void MMUp()
+    {
+        for (int x = 0;x < 4;x++)
+        {
+            for (int y = 0;y < 4;y++)
+            {
+                if (grid[x][y] == 0)
+                {
+                    for (int j = y;j < 4;j++)
+                    {
+                        if (grid[x][j] != 0)
+                        {
+                            grid[x][y] = grid[x][j];
+                            grid[x][j] = 0;
+                            stopLooping = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            for (int y = 0;y < 3;y++)
+            {
+                if (grid[x][y] == grid[x][y+1])
+                {
+                    grid[x][y] = 2*grid[x][y];
+                    grid[x][y+1] = 0;
+                    for (int i = y + 1;i < 3;i++)
+                    {
+                        grid[x][i] = grid[x][i+1];
+                        grid[x][i+1] = 0;
+                        stopLooping = true;
+                    }
+                }
+            }
+        }
+        
+    }
+    public static void MMDown()
+    {
+        
+    }
+    public static void MMRight()
+    {
+        
+    }
 }
-   /* public void mMLeft()
-    {
-        
-    }
-    public void mMDown()
-    {
-        
-    }
-    public void mMRight()
-    {
-        
-    }
-}*/
