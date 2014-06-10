@@ -1,4 +1,6 @@
 
+//HAHA Angelique is ruining code with comments!
+
 package twentyfourtyeight;
 
 import java.util.Random;
