@@ -4,10 +4,13 @@
 
 package twentyfourtyeight;
 
+import java.io.*;
+import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Twentyfourtyeight {
+    public static File file = new File("HighScore.txt");
     public static final int HEIGHT = 4;
     public static final int WIDTH = 4;
     public static int[][] grid = new int[WIDTH][HEIGHT];
@@ -18,8 +21,8 @@ public class Twentyfourtyeight {
     public static boolean stopLooping = false;
     public static boolean pairsLeft = true;
     
-    public static void main(String[] args) {
-        AddNewNum();
+    public static void main(String[] args) throws IOException{
+                AddNewNum();
         AddNewNum();
         Display();
         while (KeepGoing())
@@ -31,6 +34,7 @@ public class Twentyfourtyeight {
     }
     public static void Display()
     {
+        
         for(int y = 0; y < HEIGHT; y++)
         {
             for(int i = 0; i < WIDTH; i ++){System.out.print("+-----");}
@@ -190,6 +194,7 @@ public class Twentyfourtyeight {
                     if (grid[x][y] == grid[x+1][y])
                     {
                         grid[x][y] = 2*grid[x][y];
+                        currentScore += grid[x][y];
                         grid[x+1][y] = 0;
                         stopLooping = true;
                     }
@@ -388,4 +393,52 @@ public class Twentyfourtyeight {
             }
         }
     }
+    public static void FileCreater(int passin)throws IOException
+    {
+        
+        file.createNewFile();
+        FileWriter writer = new FileWriter(file);
+        String scoreintstring = "" + passin;
+        writer.write(scoreintstring);
+        writer.flush();
+        writer.close();
+    }
+    public static void FileReader()
+    {
+        try{
+            Scanner sc = new Scanner(file);
+            while(sc.hasNextLine())
+            {
+                highScore = sc.nextInt();
+            }
+            sc.close();
+        }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("ERROR: EEAII3492ISNGLK230");
+            System.out.println("    File Not Found");
+        }
+    }
+    public static void RecordScore()
+    {
+        
+    }
+    public static void CheckForFile()throws IOException
+    {
+       try{
+            Scanner sc = new Scanner(file);
+            while(sc.hasNextLine())
+            {
+                highScore = sc.nextInt();
+            }
+            sc.close();
+        }
+        catch(FileNotFoundException e)
+        {
+            FileCreater(0);
+        }
+    }
 }
+        
+    
+
