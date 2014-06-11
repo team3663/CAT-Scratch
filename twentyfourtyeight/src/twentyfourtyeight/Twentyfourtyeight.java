@@ -19,43 +19,18 @@ public class Twentyfourtyeight {
     public static int turns = 0;
     public static Scanner sc = new Scanner(System.in);
     public static boolean stopLooping = false;
+    public static boolean pairsLeft = true;
     
     public static void main(String[] args) throws IOException{
-        grid[0][0] = 2;
-        grid[0][1] = 0;
-        grid[0][2] = 0;
-        grid[0][3] = 2;
-        grid[1][0] = 0;
-        grid[1][1] = 0;
-        grid[1][2] = 2;
-        grid[1][3] = 0;
-        grid[2][0] = 0;
-        grid[2][1] = 0;
-        grid[2][2] = 2;
-        grid[2][3] = 0;
-        grid[3][0] = 0;
-        grid[3][1] = 2;
-        grid[3][2] = 0;
-        grid[3][3] = 0;
-        Display();
-        if(!KeepGoing())
-        {
-            System.out.println("this is madness");
-        }
-        else
-        {
-            //AddNewNum();
-            System.out.println("lalalala");
-        }
+                AddNewNum();
         AddNewNum();
-        FileCreater(45);
-        FileReader();
         Display();
-        MoveAndMerge();
-        FileCreater(0);
-        FileReader();
-        Display();
-        
+        while (KeepGoing())
+        {
+            MoveAndMerge();
+            AddNewNum();
+            Display();
+        }
     }
     public static void Display()
     {
@@ -137,12 +112,15 @@ public class Twentyfourtyeight {
             }
             if((dir.contains("2")) || (dir.contains("down")) || (dir.contains("s")))
             {
+                MMDown();
             }
             if((dir.contains("3")) || (dir.contains("left")) || (dir.contains("a")))
             {
+                MMLeft();
             }
             if((dir.contains("4")) || (dir.contains("right")) || (dir.contains("d")))
             {
+                MMRight();
             }
         }while(stopLooping == false);
     }
@@ -187,35 +165,71 @@ public class Twentyfourtyeight {
     }
     public static void MMLeft()
     {
-        for (int y = 0;y < 4;y++)
-        {
-            for (int x = 0;x < 4;x++)
+    /*    do
+        {*/
+            for (int y = 0;y < HEIGHT;y++)
             {
-                if (grid[x][y] == 0)
+                for (int x = 0;x < WIDTH;x++)
                 {
-                    for (int j = x;j < 4;j++)
+                    if (grid[x][y] == 0)
                     {
-                        if (grid[x][j] != 0)
+                        for (int j = x;j < WIDTH;j++)
                         {
-                            grid[x][y] = grid[x][j];
-                            grid[x][j] = 0;
+                            if (grid[j][y] != 0)
+                            {
+                                grid[x][y] = grid[j][y];
+                                grid[j][y] = 0;
+                                stopLooping = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                for (int x = 0;x < WIDTH-1;x++)
+                {
+                    if (grid[x][y] == grid[x+1][y])
+                    {
+                        grid[x][y] = 2*grid[x][y];
+                        currentScore += grid[x][y];
+                        grid[x+1][y] = 0;
+                    }
+                    for (int i = x+1;i < WIDTH-1;i++)
+                    {
+                        if (grid[i][y] != 0 && grid[x+1][y] == 0)
+                        {
+                            grid[x+1][y] = grid[i][y];
+                            grid[i][y] = 0;
                             stopLooping = true;
-                            break;
                         }
                     }
                 }
             }
-        }
+     /*       for (int y = 0;y < HEIGHT;y++)
+            {
+                for (int x = 0;x < WIDTH-1;x++)
+                {
+                    if (grid[x][y] == grid[x+1][y])
+                    {
+                        pairsLeft = true;
+                        break;
+                    }
+                    else
+                    {
+                        pairsLeft = false;
+                    }
+                }
+            }
+        }while (pairsLeft);*/
     }
     public static void MMUp()
     {
-        for (int x = 0;x < 4;x++)
+        for (int x = 0;x < WIDTH;x++)
         {
-            for (int y = 0;y < 4;y++)
+            for (int y = 0;y < HEIGHT;y++)
             {
                 if (grid[x][y] == 0)
                 {
-                    for (int j = y;j < 4;j++)
+                    for (int j = y;j < HEIGHT;j++)
                     {
                         if (grid[x][j] != 0)
                         {
@@ -227,17 +241,25 @@ public class Twentyfourtyeight {
                     }
                 }
             }
-            for (int y = 0;y < 3;y++)
+            for (int y = 0;y < HEIGHT-1;y++)
             {
                 if (grid[x][y] == grid[x][y+1])
                 {
                     grid[x][y] = 2*grid[x][y];
                     grid[x][y+1] = 0;
-                    for (int i = y + 1;i < 3;i++)
+                    stopLooping = true;
+                }
+                else
+                {
+                    stopLooping = false;
+                }
+                for (int i = y+1;i < HEIGHT;i++)
+                {
+                    if (grid[x][i] != 0 && grid[x][y+1] == 0)
                     {
-                        grid[x][i] = grid[x][i+1];
-                        grid[x][i+1] = 0;
-                        stopLooping = true;
+                        grid[x][y+1] = grid[x][i];
+                        grid[x][i] = 0;
+                        break;
                     }
                 }
             }
@@ -246,11 +268,82 @@ public class Twentyfourtyeight {
     }
     public static void MMDown()
     {
-        
+        for (int x = 0;x < WIDTH;x++)
+        {
+            for (int y = HEIGHT-1;y >= 0;y--)
+            {
+                if (grid[x][y] == 0)
+                {
+                    for (int j = y;j >= 0;j--)
+                    {
+                        if (grid[x][j] != 0)
+                        {
+                            grid[x][y] = grid[x][j];
+                            grid[x][j] = 0;
+                            stopLooping = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            for (int y = HEIGHT-1;y > 0;y--)
+            {
+                if (grid[x][y] == grid[x][y-1])
+                {
+                    grid[x][y] = 2*grid[x][y];
+                    grid[x][y-1] = 0;
+                    stopLooping = true;
+                }
+                for (int j = y-1;j >= 0;j--)
+                {
+                    if (grid[x][y-1] == 0 && grid[x][j] != 0)
+                    {
+                        grid[x][y-1] = grid[x][j];
+                        grid[x][j] = 0;
+                        break;
+                    }
+                }
+            }
+        }
     }
     public static void MMRight()
     {
-        
+        for (int y = 0;y < HEIGHT;y++)
+        {
+            for (int x = WIDTH-1;x >= 0;x--)
+            {
+                if (grid[x][y] == 0)
+                {
+                    for (int j = x;j >= 0;j--)
+                    {
+                        if (grid[j][y] != 0)
+                        {
+                            grid[x][y] = grid[j][y];
+                            grid[j][y] = 0;
+                            stopLooping = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            for (int x = WIDTH-1;x > 0;x--)
+            {
+                if (grid[x][y] == grid[x-1][y])
+                {
+                    grid[x][y] = 2*grid[x][y];
+                    grid[x-1][y] = 0;
+                }
+                for (int i = x-1;i >= 0;i--)
+                {
+                    if (grid[i][y] != 0 && grid[x-1][y] == 0)
+                    {
+                        grid[x-1][y] = grid[i][y];
+                        grid[i][y] = 0;
+                        stopLooping = true;
+                    }
+                }
+            }
+        }
     }
     public static void FileCreater(int passin)throws IOException
     {
