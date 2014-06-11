@@ -180,6 +180,10 @@ public class Twentyfourtyeight {
                             }
                         }
                     }
+                    else
+                    {
+                        stopLooping = false;
+                    }
                 }
                 for (int x = 0;x < WIDTH-1;x++)
                 {
@@ -187,6 +191,11 @@ public class Twentyfourtyeight {
                     {
                         grid[x][y] = 2*grid[x][y];
                         grid[x+1][y] = 0;
+                        stopLooping = true;
+                    }
+                    else
+                    {
+                        stopLooping = false;
                     }
                     for (int i = x+1;i < WIDTH-1;i++)
                     {
@@ -195,6 +204,10 @@ public class Twentyfourtyeight {
                             grid[x+1][y] = grid[i][y];
                             grid[i][y] = 0;
                             stopLooping = true;
+                        }
+                        else
+                        {
+                            stopLooping = false;
                         }
                     }
                 }
@@ -233,6 +246,10 @@ public class Twentyfourtyeight {
                             stopLooping = true;
                             break;
                         }
+                        else
+                        {
+                            stopLooping = false;
+                        }
                     }
                 }
             }
@@ -254,7 +271,12 @@ public class Twentyfourtyeight {
                     {
                         grid[x][y+1] = grid[x][i];
                         grid[x][i] = 0;
+                        stopLooping = true;
                         break;
+                    }
+                    else
+                    {
+                        stopLooping = false;
                     }
                 }
             }
@@ -278,6 +300,10 @@ public class Twentyfourtyeight {
                             stopLooping = true;
                             break;
                         }
+                        else
+                        {
+                            stopLooping = false;
+                        }
                     }
                 }
             }
@@ -289,13 +315,22 @@ public class Twentyfourtyeight {
                     grid[x][y-1] = 0;
                     stopLooping = true;
                 }
+                else
+                {
+                    stopLooping = false;
+                }
                 for (int j = y-1;j >= 0;j--)
                 {
                     if (grid[x][y-1] == 0 && grid[x][j] != 0)
                     {
                         grid[x][y-1] = grid[x][j];
                         grid[x][j] = 0;
+                        stopLooping = true;
                         break;
+                    }
+                    else
+                    {
+                        stopLooping = false;
                     }
                 }
             }
@@ -318,6 +353,10 @@ public class Twentyfourtyeight {
                             stopLooping = true;
                             break;
                         }
+                        else
+                        {
+                            stopLooping = false;
+                        }
                     }
                 }
             }
@@ -327,6 +366,11 @@ public class Twentyfourtyeight {
                 {
                     grid[x][y] = 2*grid[x][y];
                     grid[x-1][y] = 0;
+                    stopLooping = true;
+                }
+                else
+                {
+                    stopLooping = false;
                 }
                 for (int i = x-1;i >= 0;i--)
                 {
@@ -335,6 +379,10 @@ public class Twentyfourtyeight {
                         grid[x-1][y] = grid[i][y];
                         grid[i][y] = 0;
                         stopLooping = true;
+                    }
+                    else
+                    {
+                        stopLooping = false;
                     }
                 }
             }
