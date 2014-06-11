@@ -22,13 +22,15 @@ public class Twentyfourtyeight {
     public static boolean pairsLeft = true;
     
     public static void main(String[] args) throws IOException{
-                AddNewNum();
         AddNewNum();
+        AddNewNum();
+        FileReader();
         Display();
         while (KeepGoing())
         {
             MoveAndMerge();
             AddNewNum();
+            RecordScore();
             Display();
         }
     }
@@ -234,6 +236,7 @@ public class Twentyfourtyeight {
                         if (grid[x][j] != 0)
                         {
                             grid[x][y] = grid[x][j];
+                            
                             grid[x][j] = 0;
                             stopLooping = true;
                             break;
@@ -246,6 +249,7 @@ public class Twentyfourtyeight {
                 if (grid[x][y] == grid[x][y+1])
                 {
                     grid[x][y] = 2*grid[x][y];
+                    currentScore += grid[x][y];  
                     grid[x][y+1] = 0;
                     stopLooping = true;
                 }
@@ -291,6 +295,7 @@ public class Twentyfourtyeight {
                 if (grid[x][y] == grid[x][y-1])
                 {
                     grid[x][y] = 2*grid[x][y];
+                    currentScore += grid[x][y];
                     grid[x][y-1] = 0;
                     stopLooping = true;
                 }
@@ -331,6 +336,7 @@ public class Twentyfourtyeight {
                 if (grid[x][y] == grid[x-1][y])
                 {
                     grid[x][y] = 2*grid[x][y];
+                    currentScore += grid[x][y];
                     grid[x-1][y] = 0;
                 }
                 for (int i = x-1;i >= 0;i--)
@@ -355,7 +361,7 @@ public class Twentyfourtyeight {
         writer.flush();
         writer.close();
     }
-    public static void FileReader()
+    public static void FileReader()throws IOException
     {
         try{
             Scanner sc = new Scanner(file);
@@ -367,27 +373,16 @@ public class Twentyfourtyeight {
         }
         catch(FileNotFoundException e)
         {
-            System.out.println("ERROR: EEAII3492ISNGLK230");
-            System.out.println("    File Not Found");
+            System.out.println("...ERROR");
+            //FileCreater(0);
         }
     }
-    public static void RecordScore()
+    public static void RecordScore()throws IOException
     {
-        
-    }
-    public static void CheckForFile()throws IOException
-    {
-       try{
-            Scanner sc = new Scanner(file);
-            while(sc.hasNextLine())
-            {
-                highScore = sc.nextInt();
-            }
-            sc.close();
-        }
-        catch(FileNotFoundException e)
+        if(currentScore > highScore)
         {
-            FileCreater(0);
+            FileCreater(currentScore);
+            FileReader();
         }
     }
 }
