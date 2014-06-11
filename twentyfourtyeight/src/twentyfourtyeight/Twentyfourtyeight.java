@@ -184,7 +184,7 @@ public class Twentyfourtyeight {
                             }
                         }
                     }
-                    else
+                    else if (x == WIDTH - 1 && y == HEIGHT - 1)
                     {
                         stopLooping = false;
                     }
@@ -198,7 +198,7 @@ public class Twentyfourtyeight {
                         grid[x+1][y] = 0;
                         stopLooping = true;
                     }
-                    else
+                    else if (x == WIDTH - 2)//////KEEP WORKING FROM HERE
                     {
                         stopLooping = false;
                     }
