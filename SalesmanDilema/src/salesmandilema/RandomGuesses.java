@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class RandomGuesses {
     public int[] solveIt(int numberOfCities, int[][] cityDistances){
-        int[] solution = new int[numberOfCities];
-        int[] bestSolution = new int[numberOfCities];
+        int[] solution = new int[numberOfCities+1];
+        int[] bestSolution = new int[numberOfCities+1];
         int bestDistance = 0x7fffffff;
         boolean[] visited = new boolean[numberOfCities];
         int guesses = 500000;
@@ -36,13 +36,13 @@ public class RandomGuesses {
                 visited[nextCity]=true;
                 visitedCityCount++;
             }
-            
+            solution[numberOfCities] = solution[0];
             int distance = 0;
-            for (i = 1; i < numberOfCities; i++)
-                distance += cityDistances[i-1][i];
+            for (i = 1; i < numberOfCities+1; i++)
+                distance += cityDistances[solution[i-1]][solution[i]];
             
             if (distance<bestDistance){
-                for (i = 0; i < numberOfCities; i++)
+                for (i = 0; i < numberOfCities+1; i++)
                     bestSolution[i] = solution[i];
 
                 bestDistance = distance;
