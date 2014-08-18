@@ -3,8 +3,8 @@ package salesmandilema;
 public class SalesmanDilema {
 
     static int[][] cityDistances;
-    static final int NUMCITIES = 100;
-    static final int WORLDSIZE = 10000;
+    static final int NUMCITIES = 6;
+    static final int WORLDSIZE = 100;
     static CityGenerator map;
     
     public static void main(String[] args) {
@@ -18,11 +18,11 @@ public class SalesmanDilema {
             System.out.println();
         }
         
-        /*
-        Solution1 solution1 = new Solution1();
-        int[] sol1 = solution1.solveIt(NUMCITIES, cityDistances);
-        printSolution("Solution1 - initial order",sol1);
-*/
+        
+        WillyLoman willy = new WillyLoman();
+        int[] solWilly = willy.solveIt(NUMCITIES, cityDistances);
+        printSolution("Willy's(Curtis's) Route",solWilly);
+
         RandomGuesses randomGuesses = new RandomGuesses();
         int[] solRan = randomGuesses.solveIt(NUMCITIES, cityDistances);
         printSolution("Random",solRan);
