@@ -9,3 +9,6 @@ _MACOSX
 #*\nbproject
 /twentyfourtyeight/build/
 /twentyfourtyeight/dist/
+/CelsiusConverterProject/nbproject/private/
+/charValues/nbproject/private/
+/charValues/build/
