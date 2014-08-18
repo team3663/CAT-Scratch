@@ -17,7 +17,10 @@ public class SalesmanDilema {
             map.cities[i].printDistances();
             System.out.println();
         }
-        
+
+        Test solution1 = new Test();
+        int[] solTest = solution1.solveIt(NUMCITIES, cityDistances);
+        printSolution("Test route",solTest);
         
         WillyLoman willy = new WillyLoman();
         int[] solWilly = willy.solveIt(NUMCITIES, cityDistances);
@@ -34,11 +37,11 @@ public class SalesmanDilema {
         WeightedGuesses weightedGuesses = new WeightedGuesses();
         int[] solWG = weightedGuesses.solveIt(NUMCITIES, cityDistances);
         printSolution("Weighted guesses",solWG);
-/*
+
         Exhaustive exhaustive = new Exhaustive();
         int[] solEx = exhaustive.solveIt(NUMCITIES, cityDistances);
         printSolution("Exhaustive",solEx);
-*/        
+        
         /*
         Nathan nathan = new Nathan();
         int[] solNathan = nathan.solveIt(NUMCITIES, cityDistances);
@@ -48,17 +51,51 @@ public class SalesmanDilema {
     
     public static void printSolution(String solver, int[] solution) {
                 
-        System.out.println("\n"+solver);
         int totalDistance = 0;
-        for (int i = 0; i < NUMCITIES-1; i++){
+        int i;
+        
+        System.out.println("\n"+solver);
+
+        if (solution.length != NUMCITIES+1) {
+            System.out.println("solution array is wrong length ("+solution.length+") expected " + (NUMCITIES+1));
+            return;
+        }
+        
+        for (i = 0; i < NUMCITIES+1; i++){
+            if (solution[i] >= NUMCITIES || solution[i] < 0){
+                System.out.println("At least one invalid entry in solution array: index "+i+" is "+solution[i]);
+                return;
+            }
+        }
+        
+        if (solution[NUMCITIES] != solution[0]){
+            System.out.println("Solution did not end in starting city. Start is "+solution[0]+", end is "+solution[NUMCITIES]);
+            return;
+        }
+        
+        for (i = 0; i < NUMCITIES; i++){
             map.cities[solution[i]].printCity();
             System.out.print("to ");
             map.cities[solution[i+1]].printCity(solution[i]);
             System.out.println();
             totalDistance += cityDistances[solution[i]][solution[i+1]];
         }
+                
+        boolean[] verifier = new boolean[NUMCITIES];
+        
+        for (i = 0; i < NUMCITIES; i++)
+            verifier[i] = false;
+        
+        for (i = 0; i < NUMCITIES; i++)
+            verifier[solution[i]] = true;
+
+        for (i = 0; i < NUMCITIES; i++){
+            if (verifier[i] == false){
+                System.out.println("At least one city never visited: "+i);
+                return;
+            }
+        }
+
         System.out.println("Total Distance: "+totalDistance);
-
     }
-
 }

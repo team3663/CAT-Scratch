@@ -3,7 +3,7 @@ package salesmandilema;
 public class Exhaustive {
     
     public int[] solveIt(int numberOfCities, int[][] cityDistances){
-        int[] bestSolution = new int[numberOfCities];
+        int[] bestSolution = new int[numberOfCities+1];
         int bestDistance = 0x7fffffff;
 
         int i;
@@ -21,9 +21,12 @@ public class Exhaustive {
             for (i=1; i<numberOfCities; i++)
                 currentDistance += cityDistances[ct[i-1]][ct[i]];
 
+            currentDistance += cityDistances[ct[numberOfCities-1]][ct[0]];
+            
             if (currentDistance<bestDistance){
                 for (i = 0; i < numberOfCities; i++)
                     bestSolution[i] = ct[i];
+                bestSolution[numberOfCities]=ct[0];
                 bestDistance = currentDistance;
             }
         }
