@@ -6,7 +6,7 @@ public class NearestNeighbor {
     
     public int[] solveIt(int numberOfCities, int[][] cityDistances){
         int[] solution = new int[numberOfCities];
-        int[] bestSolution = new int[numberOfCities];
+        int[] bestSolution = new int[numberOfCities+1];
         int bestDistance = 0x7fffffff;
         int currentDistance;
         boolean[] visited = new boolean[numberOfCities];
@@ -47,10 +47,13 @@ public class NearestNeighbor {
                 currentCity = nextCity;
             }
             
+            currentDistance += cityDistances[solution[0]][solution[numberOfCities-1]];
             //System.out.println(""+j+": "+currentDistance+", "+bestDistance);
             if (currentDistance<bestDistance){
                 for (int m = 0; m < numberOfCities; m++)
                     bestSolution[m] = solution[m];
+
+                bestSolution[numberOfCities] = solution[0];
                 bestDistance = currentDistance;
             }
         }
