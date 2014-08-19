@@ -2,7 +2,8 @@ package salesmandilema;
 
 public class Exhaustive {
     
-    public int[] solveIt(int numberOfCities, int[][] cityDistances){
+    public int[] solveIt(int[][] cityDistances){
+        int numberOfCities = cityDistances[0].length;
         int[] bestSolution = new int[numberOfCities+1];
         int bestDistance = 0x7fffffff;
 

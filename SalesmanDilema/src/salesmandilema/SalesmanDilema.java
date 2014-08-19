@@ -8,8 +8,7 @@ public class SalesmanDilema {
     static CityGenerator map;
     
     public static void main(String[] args) {
-        map = new CityGenerator();
-        
+        map = new CityGenerator();        
         cityDistances = map.GenerateMap(NUMCITIES, WORLDSIZE, 1);
         
         for(int i = 0; i < NUMCITIES; i++){
@@ -18,38 +17,33 @@ public class SalesmanDilema {
             System.out.println();
         }
 
-        Test solution1 = new Test();
-        int[] solTest = solution1.solveIt(NUMCITIES, cityDistances);
-        printSolution("Test route",solTest);
-        
+        Test test = new Test();
+        verifyAndPrintSolution("Test route",test.solveIt(cityDistances));
+
         WillyLoman willy = new WillyLoman();
-        int[] solWilly = willy.solveIt(NUMCITIES, cityDistances);
-        printSolution("Willy's(Curtis's) Route",solWilly);
+        verifyAndPrintSolution("Willy's(Curtis's) Route",willy.solveIt(cityDistances));
 
         RandomGuesses randomGuesses = new RandomGuesses();
-        int[] solRan = randomGuesses.solveIt(NUMCITIES, cityDistances);
-        printSolution("Random",solRan);
+        verifyAndPrintSolution("Random",randomGuesses.solveIt(cityDistances));
         
-        NearestNeighbor solution3 = new NearestNeighbor();
-        int[] sol3 = solution3.solveIt(NUMCITIES, cityDistances);
-        printSolution("Nearest neighbor",sol3);
+        NearestNeighbor nearestNeighbor = new NearestNeighbor();
+        verifyAndPrintSolution("Nearest neighbor",nearestNeighbor.solveIt(cityDistances));
 
-        WeightedGuesses weightedGuesses = new WeightedGuesses();
-        int[] solWG = weightedGuesses.solveIt(NUMCITIES, cityDistances);
-        printSolution("Weighted guesses",solWG);
+        AntColony antColony = new AntColony();
+        verifyAndPrintSolution("Ant Colony",antColony.solveIt(cityDistances));
 
-        Exhaustive exhaustive = new Exhaustive();
-        int[] solEx = exhaustive.solveIt(NUMCITIES, cityDistances);
-        printSolution("Exhaustive",solEx);
-        
+        if (NUMCITIES > 11) {
+            Exhaustive exhaustive = new Exhaustive();
+            verifyAndPrintSolution("Exhaustive",exhaustive.solveIt(cityDistances));
+        }
+
         /*
         Nathan nathan = new Nathan();
-        int[] solNathan = nathan.solveIt(NUMCITIES, cityDistances);
-        printSolution("Nathan's Solution",solNathan);
+        printSolution("Nathan's Solution",nathan.solveIt(NUMCITIES, cityDistances));
         */
     }
     
-    public static void printSolution(String solver, int[] solution) {
+    public static void verifyAndPrintSolution(String solver, int[] solution) {
                 
         int totalDistance = 0;
         int i;
@@ -73,14 +67,6 @@ public class SalesmanDilema {
             return;
         }
         
-        for (i = 0; i < NUMCITIES; i++){
-            map.cities[solution[i]].printCity();
-            System.out.print("to ");
-            map.cities[solution[i+1]].printCity(solution[i]);
-            System.out.println();
-            totalDistance += cityDistances[solution[i]][solution[i+1]];
-        }
-                
         boolean[] verifier = new boolean[NUMCITIES];
         
         for (i = 0; i < NUMCITIES; i++)
@@ -96,6 +82,14 @@ public class SalesmanDilema {
             }
         }
 
+        for (i = 0; i < NUMCITIES; i++){
+            map.cities[solution[i]].printCity();
+            System.out.print("to ");
+            map.cities[solution[i+1]].printCity(solution[i]);
+            System.out.println();
+            totalDistance += cityDistances[solution[i]][solution[i+1]];
+        }
+                
         System.out.println("Total Distance: "+totalDistance);
     }
 }

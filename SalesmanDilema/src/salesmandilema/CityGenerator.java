@@ -18,14 +18,17 @@ public class CityGenerator {
         else
             r = new Random();
         
-        if (numberOfCities > cityNames.length){
-            System.out.println("Need more city names");
-            return cityDistances;
-        }
         cities = new City[numberOfCities];
         
-        for (i = 0; i < numberOfCities; i++){
-            cities[i]= new City(cityNames[i],r.nextInt(worldDimension),r.nextInt(worldDimension),numberOfCities);
+        if (numberOfCities <= cityNames.length){
+            for (i = 0; i < numberOfCities; i++){
+                cities[i]= new City(cityNames[i],r.nextInt(worldDimension),r.nextInt(worldDimension),numberOfCities);
+            }
+        } else {
+            for (i = 0; i < numberOfCities; i++){
+                String cityName = "c_"+i;
+                cities[i]= new City(cityName,r.nextInt(worldDimension),r.nextInt(worldDimension),numberOfCities);
+            }
         }
         
         cityDistances = new int[numberOfCities][numberOfCities];

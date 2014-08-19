@@ -4,7 +4,8 @@ import java.util.Random;
 
 public class NearestNeighbor {
     
-    public int[] solveIt(int numberOfCities, int[][] cityDistances){
+    public int[] solveIt(int[][] cityDistances){
+        int numberOfCities = cityDistances[0].length;
         int[] solution = new int[numberOfCities];
         int[] bestSolution = new int[numberOfCities+1];
         int bestDistance = 0x7fffffff;

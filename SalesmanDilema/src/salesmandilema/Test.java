@@ -2,7 +2,10 @@ package salesmandilema;
 
 public class Test {
 
-    public int[] solveIt(int numberOfCities, int[][] cityDistances){
+    public int[] solveIt(int[][] cityDistances){
+        
+        int numberOfCities = cityDistances[0].length;
+
         int[] solution = new int[numberOfCities+1];
         
         for (int i = 0; i < numberOfCities; i++){

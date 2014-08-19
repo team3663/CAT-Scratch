@@ -2,10 +2,13 @@ package salesmandilema;
 
 import java.util.Random;
 
-public class WeightedGuesses {
-    public int[] solveIt(int numberOfCities, int[][] cityDistances){
+public class AntColony {
+    public int[] solveIt(int[][] cityDistances){
+        
+        int numberOfCities = cityDistances[0].length;
+        
         int[] solution = new int[numberOfCities];
-        int[] bestSolution = new int[numberOfCities];
+        int[] bestSolution = new int[numberOfCities+1];
         int bestDistance = 0x3fffffff;
 
         boolean[] visited = new boolean[numberOfCities];
@@ -77,11 +80,13 @@ public class WeightedGuesses {
             for (i=1; i<numberOfCities; i++){
                 distance += cityDistances[solution[i-1]][solution[i]];
             }
+            distance += cityDistances[solution[0]][solution[numberOfCities-1]];
             
             if (distance<bestDistance){
                 for (i = 0; i < numberOfCities; i++) 
                     bestSolution[i] = solution[i];
 
+                bestSolution[numberOfCities] = solution[0];
                 bestDistance = distance;
                 j = 0; // reset the guess counter
             }
