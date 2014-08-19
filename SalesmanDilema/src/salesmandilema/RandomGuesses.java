@@ -14,6 +14,7 @@ public class RandomGuesses {
         
         Random r = new Random();
 
+        int count = 0;
         for (j = 0; j<guesses; j++){
             for (i = 0; i < numberOfCities; i++){
                 visited[i]=false;
@@ -42,13 +43,16 @@ public class RandomGuesses {
             for (i = 1; i < numberOfCities+1; i++)
                 distance += cityDistances[solution[i-1]][solution[i]];
             
+            count++;
             if (distance<bestDistance){
-                for (i = 0; i < numberOfCities+1; i++)
-                    bestSolution[i] = solution[i];
+                System.arraycopy(solution, 0, bestSolution, 0, numberOfCities+1);
 
                 bestDistance = distance;
+                System.out.println(""+count+": "+bestDistance);
+                j = 0;
             }
         }
+        System.out.println(""+count+": "+bestDistance);
         return bestSolution;
     }    
 }

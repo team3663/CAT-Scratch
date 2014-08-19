@@ -1,7 +1,5 @@
 package salesmandilema;
 
-import java.util.Random;
-
 public class NearestNeighbor {
     
     public int[] solveIt(int[][] cityDistances){
@@ -12,6 +10,7 @@ public class NearestNeighbor {
         int currentDistance;
         boolean[] visited = new boolean[numberOfCities];
         
+        int count=0;
         // start from every city
         for (int j = 0; j<numberOfCities; j++){
             for (int i = 0; i < numberOfCities; i++){
@@ -42,22 +41,23 @@ public class NearestNeighbor {
                 }
                 
                 currentDistance += nextCityDistance;
-                //System.out.print("("+nextCity+","+nextCityDistance+","+currentDistance+")");
                 solution[citiesVisited++]=nextCity;
                 visited[nextCity]=true;
                 currentCity = nextCity;
             }
             
             currentDistance += cityDistances[solution[0]][solution[numberOfCities-1]];
-            //System.out.println(""+j+": "+currentDistance+", "+bestDistance);
+            count++;
             if (currentDistance<bestDistance){
-                for (int m = 0; m < numberOfCities; m++)
-                    bestSolution[m] = solution[m];
+
+                System.arraycopy(solution, 0, bestSolution, 0, numberOfCities);
 
                 bestSolution[numberOfCities] = solution[0];
                 bestDistance = currentDistance;
+                System.out.println(""+count+": "+bestDistance);
             }
         }
+        System.out.println(""+count+": "+bestDistance);
         return bestSolution;
     }
 }

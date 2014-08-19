@@ -3,7 +3,11 @@ package salesmandilema;
 public class WillyLoman {
     public int[] solveIt(int[][] cityDistances){
         int numberOfCities = cityDistances[0].length;
+<<<<<<< HEAD
         int[] sol = new int[numberOfCities+1];
+=======
+        int[] sol = new int[numberOfCities];
+>>>>>>> 5cf4ab11df70cbb2c50ec62c1677dbd47519fe40
         int temp;
         int farthest = 0;
         int farthestC = 0;
