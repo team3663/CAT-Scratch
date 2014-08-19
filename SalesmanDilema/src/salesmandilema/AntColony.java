@@ -12,19 +12,20 @@ public class AntColony {
         int bestDistance = 0x3fffffff;
 
         boolean[] visited = new boolean[numberOfCities];
-        int[][] weights = new int[numberOfCities][numberOfCities];
-        int[] startWeights = new int[numberOfCities];
+        float[][] weights = new float[numberOfCities][numberOfCities];
+        float[] startWeights = new float[numberOfCities];
         
-        int guesses = 10000;//100*numberOfCities*numberOfCities;
+        int guesses = 200000;//100*numberOfCities*numberOfCities;
         int i,j;
             
         for (i=0; i<numberOfCities; i++) {
-            startWeights[i] = guesses;
+            startWeights[i] = 1;
             for (j=0; j<numberOfCities; j++) {
-                weights[i][j] = guesses;
+                weights[i][j] = 1;
             }
         }
         Random r = new Random();
+        int count = 0;
 
         for (j = 0; j<guesses; j++){
             for (i = 0; i < numberOfCities; i++){
@@ -32,11 +33,11 @@ public class AntColony {
             }
             
             // start in random city
-            int sumOfStartWeights = 0;
+            float sumOfStartWeights = 0;
             for (i = 0; i < numberOfCities; i++) 
                 sumOfStartWeights += startWeights[i];
             
-            int startGuess = r.nextInt(sumOfStartWeights);
+            float startGuess = sumOfStartWeights*r.nextFloat();
             
             for (i = 0; i < numberOfCities; i++){
                 if (startGuess <= startWeights[i]){
@@ -49,7 +50,6 @@ public class AntColony {
 
             int visitedCityCount = 1;
             
-            int nextCity=0;
             while (visitedCityCount<numberOfCities){
 
                 int sumOfWeights=0;
@@ -59,48 +59,45 @@ public class AntColony {
                     }
                 }
  
-                int weightedGuess = r.nextInt(sumOfWeights);
+                float weightedGuess = sumOfWeights*r.nextFloat();
                 
                 for (i = 0; i < numberOfCities; i++) {
                     if (!visited[i]){
                         if (weightedGuess <= weights[i][solution[visitedCityCount-1]]){
-                            nextCity = i;
+                            solution[visitedCityCount]=i;
+                            visited[i]=true;
                             break;
                         }
                         weightedGuess -= weights[i][solution[visitedCityCount-1]];
                     }
                 }
-                solution[visitedCityCount]=nextCity;
-                visited[nextCity]=true;
 
                 visitedCityCount++;
             }
-            int weight;
+
             int distance = 0;
             for (i=1; i<numberOfCities; i++){
                 distance += cityDistances[solution[i-1]][solution[i]];
             }
             distance += cityDistances[solution[0]][solution[numberOfCities-1]];
             
+            count++;
             if (distance<bestDistance){
-                for (i = 0; i < numberOfCities; i++) 
-                    bestSolution[i] = solution[i];
+                System.arraycopy(solution, 0, bestSolution, 0, numberOfCities);
 
                 bestSolution[numberOfCities] = solution[0];
                 bestDistance = distance;
                 j = 0; // reset the guess counter
+                System.out.println(""+count+": "+bestDistance);
             }
 
-            if (distance<bestDistance+100)                
-                weight = 10;
-            else
-                weight = -1;
-            
+            float weight = (float)1.0/(float)distance;
             startWeights[solution[0]] += weight;
             for (i = 1; i < numberOfCities; i++) {
                 weights[solution[i-1]][solution[i]] += weight;
             }
         }
+        System.out.println(""+count+": "+bestDistance);
         return bestSolution;
     }    
 }

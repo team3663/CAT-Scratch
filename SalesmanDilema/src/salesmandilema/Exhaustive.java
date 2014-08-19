@@ -10,14 +10,15 @@ public class Exhaustive {
         int i;
         int[] ct = new int[numberOfCities];
         for (i=0; i<numberOfCities; i++) ct[i]=0;
-        int highBit = 0;
 
+        int count = 0;
         while (true) {
             
             ct = advance(ct);
-            if (ct[0] < highBit) break;
-            highBit = ct[0];
+            if (ct[0] > 0) 
+                break;
 
+            count++;
             int currentDistance=0;
             for (i=1; i<numberOfCities; i++)
                 currentDistance += cityDistances[ct[i-1]][ct[i]];
@@ -25,12 +26,15 @@ public class Exhaustive {
             currentDistance += cityDistances[ct[numberOfCities-1]][ct[0]];
             
             if (currentDistance<bestDistance){
-                for (i = 0; i < numberOfCities; i++)
-                    bestSolution[i] = ct[i];
+                System.out.println(""+count+": "+currentDistance);
+                System.arraycopy(ct, 0, bestSolution, 0, numberOfCities);
+
                 bestSolution[numberOfCities]=ct[0];
                 bestDistance = currentDistance;
+                System.out.println(""+count+": "+bestDistance);
             }
         }
+        System.out.println(""+count+": "+bestDistance);
         return bestSolution;
     }
     
