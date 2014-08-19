@@ -1,7 +1,8 @@
 package salesmandilema;
 
 public class WillyLoman {
-    public int[] solveIt(int numberOfCities, int[][] cityDistances){
+    public int[] solveIt(int[][] cityDistances){
+        int numberOfCities = cityDistances[0].length;
         int[] sol = new int[numberOfCities];
         int temp;
         int farthest = 0;

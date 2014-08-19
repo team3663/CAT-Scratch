@@ -3,13 +3,14 @@ package salesmandilema;
 public class SalesmanDilema {
 
     static int[][] cityDistances;
-    static final int NUMCITIES = 6;
+    static final int NUMCITIES = 10;
     static final int WORLDSIZE = 100;
+    static final int SEED = 1;
     static CityGenerator map;
     
     public static void main(String[] args) {
         map = new CityGenerator();        
-        cityDistances = map.GenerateMap(NUMCITIES, WORLDSIZE, 1);
+        cityDistances = map.GenerateMap(NUMCITIES, WORLDSIZE, SEED);
         
         for(int i = 0; i < NUMCITIES; i++){
             map.cities[i].printCity();
@@ -17,11 +18,11 @@ public class SalesmanDilema {
             System.out.println();
         }
 
-        Test test = new Test();
-        verifyAndPrintSolution("Test route",test.solveIt(cityDistances));
+    //    Test test = new Test();
+    //    verifyAndPrintSolution("Test route",test.solveIt(cityDistances));
 
-        WillyLoman willy = new WillyLoman();
-        verifyAndPrintSolution("Willy's(Curtis's) Route",willy.solveIt(cityDistances));
+//        WillyLoman willy = new WillyLoman();
+//        verifyAndPrintSolution("Willy's(Curtis's) Route",willy.solveIt(cityDistances));
 
         RandomGuesses randomGuesses = new RandomGuesses();
         verifyAndPrintSolution("Random",randomGuesses.solveIt(cityDistances));
@@ -32,7 +33,7 @@ public class SalesmanDilema {
         AntColony antColony = new AntColony();
         verifyAndPrintSolution("Ant Colony",antColony.solveIt(cityDistances));
 
-        if (NUMCITIES > 11) {
+        if (NUMCITIES < 10) {
             Exhaustive exhaustive = new Exhaustive();
             verifyAndPrintSolution("Exhaustive",exhaustive.solveIt(cityDistances));
         }
@@ -83,13 +84,15 @@ public class SalesmanDilema {
         }
 
         for (i = 0; i < NUMCITIES; i++){
+
             map.cities[solution[i]].printCity();
             System.out.print("to ");
             map.cities[solution[i+1]].printCity(solution[i]);
             System.out.println();
+
             totalDistance += cityDistances[solution[i]][solution[i+1]];
         }
-                
+               
         System.out.println("Total Distance: "+totalDistance);
     }
 }
