@@ -1,6 +1,7 @@
 package salesmandilema;
 
-public class WillyLoman {
+public class WillyLoman implements TSP{
+    public String description (){return "Willy Loman";}
     public int[] solveIt(int[][] cityDistances){
         int numberOfCities = cityDistances[0].length;
         int[] sol = new int[numberOfCities+1];

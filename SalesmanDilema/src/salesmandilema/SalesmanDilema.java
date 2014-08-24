@@ -18,42 +18,49 @@ public class SalesmanDilema {
             System.out.println();
         }
 
-    //    Test test = new Test();
-    //    verifyAndPrintSolution("Test route",test.solveIt(cityDistances));
+        //Test test = new Test();
+        //runAnalysis(test);
 
         LouBookman louBookman = new LouBookman();
-        verifyAndPrintSolution("Willy's(Curtis's) Route",louBookman.solveIt(cityDistances));
+        runAnalysis(louBookman);
 
         WillyLoman willy = new WillyLoman();
-        verifyAndPrintSolution("Willy's(Curtis's) Route",willy.solveIt(cityDistances));
+        runAnalysis(willy);
 
         RandomGuesses randomGuesses = new RandomGuesses();
-        verifyAndPrintSolution("Random",randomGuesses.solveIt(cityDistances));
+        runAnalysis(randomGuesses);
         
         NearestNeighbor nearestNeighbor = new NearestNeighbor();
-        verifyAndPrintSolution("Nearest neighbor",nearestNeighbor.solveIt(cityDistances));
+        runAnalysis(nearestNeighbor);
 
         AntColony antColony = new AntColony();
-        verifyAndPrintSolution("Ant Colony",antColony.solveIt(cityDistances));
+        runAnalysis(antColony);
 
         if (NUMCITIES < 10) {
             Exhaustive exhaustive = new Exhaustive();
-            verifyAndPrintSolution("Exhaustive",exhaustive.solveIt(cityDistances));
+            runAnalysis(exhaustive);
         }
 
-        /*
-        Nathan nathan = new Nathan();
-        printSolution("Nathan's Solution",nathan.solveIt(NUMCITIES, cityDistances));
-        */
+        //Nathan nathan = new Nathan();
+        //runAnalysis(nathan);        
     }
     
-    public static void verifyAndPrintSolution(String solver, int[] solution) {
+    public static void runAnalysis(TSP t){
+        long time;
+        int[] sol;
+        
+        System.out.println("\n"+t.description()+" Route"+"\nguess progress");
+        time = System.nanoTime();
+        sol = t.solveIt(cityDistances);
+        time = System.nanoTime() - time;
+        verifyAndPrintSolution(time,sol);
+    }
+    
+    public static void verifyAndPrintSolution(long duration, int[] solution) {
                 
         int totalDistance = 0;
         int i;
         
-        System.out.println("\n"+solver);
-
         if (solution.length != NUMCITIES+1) {
             System.out.println("solution array is wrong length ("+solution.length+") expected " + (NUMCITIES+1));
             return;
@@ -97,5 +104,6 @@ public class SalesmanDilema {
         }
                
         System.out.println("Total Distance: "+totalDistance);
+        System.out.println("Total Duration: "+duration/1000000.0+" (milliseconds)");
     }
 }

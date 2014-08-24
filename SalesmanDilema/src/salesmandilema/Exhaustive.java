@@ -1,7 +1,9 @@
 package salesmandilema;
 
-public class Exhaustive {
-    
+public class Exhaustive implements TSP{
+
+    public String description (){return "Exhaustive";}
+
     public int[] solveIt(int[][] cityDistances){
         int numberOfCities = cityDistances[0].length;
         int[] bestSolution = new int[numberOfCities+1];

@@ -3,12 +3,14 @@ package salesmandilema;
 import java.util.Random;
 
 
-public class LouBookman {
+public class LouBookman implements TSP{
     public int numberOfCities;
     public int[] visited;
     public Random rnd;
     public int[][] kcityDistances;
     
+    public String description (){return "Lou Bookman";}
+
     public int[] solveIt(int[][] cityDistances){
         kcityDistances = cityDistances;
         numberOfCities = cityDistances[0].length;

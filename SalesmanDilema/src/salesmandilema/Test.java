@@ -1,7 +1,8 @@
 package salesmandilema;
 
-public class Test {
+public class Test implements TSP{
 
+    public String description (){return "Test";}
     public int[] solveIt(int[][] cityDistances){
         
         int numberOfCities = cityDistances[0].length;

@@ -1,14 +1,18 @@
 package salesmandilema;
 
-public class Nathan {
+public class Nathan implements TSP{
 
     int mostIsolatedDist, isolatedDist;
     int closestCity, nextClosestCity;
     int mostIsolCity;
     int maxDist, minDist;
-    public int[] solveIt(int numberOfCities, int[][] cityDistances){
+
+    public String description (){return "Nathan";}
+    
+    public int[] solveIt(int[][] cityDistances){
         
-        mostIsolatedDist = 0;
+    int numberOfCities = cityDistances[0].length;
+    mostIsolatedDist = 0;
         isolatedDist = 0;
         maxDist = 0;
         minDist = 0x7FFFFFFF;

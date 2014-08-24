@@ -1,7 +1,9 @@
 package salesmandilema;
 
-public class NearestNeighbor {
-    
+public class NearestNeighbor implements TSP{
+
+    public String description (){return "Nearest neighbor";}
+
     public int[] solveIt(int[][] cityDistances){
         int numberOfCities = cityDistances[0].length;
         int[] solution = new int[numberOfCities];
