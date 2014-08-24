@@ -21,8 +21,11 @@ public class SalesmanDilema {
     //    Test test = new Test();
     //    verifyAndPrintSolution("Test route",test.solveIt(cityDistances));
 
-//        WillyLoman willy = new WillyLoman();
-//        verifyAndPrintSolution("Willy's(Curtis's) Route",willy.solveIt(cityDistances));
+        LouBookman louBookman = new LouBookman();
+        verifyAndPrintSolution("Willy's(Curtis's) Route",louBookman.solveIt(cityDistances));
+
+        WillyLoman willy = new WillyLoman();
+        verifyAndPrintSolution("Willy's(Curtis's) Route",willy.solveIt(cityDistances));
 
         RandomGuesses randomGuesses = new RandomGuesses();
         verifyAndPrintSolution("Random",randomGuesses.solveIt(cityDistances));
