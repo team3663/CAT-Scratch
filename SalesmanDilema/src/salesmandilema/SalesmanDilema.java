@@ -9,6 +9,7 @@ public class SalesmanDilema {
     static CityGenerator map;
     
     public static void main(String[] args) {
+        
         map = new CityGenerator();        
         cityDistances = map.GenerateMap(NUMCITIES, WORLDSIZE, SEED);
         
