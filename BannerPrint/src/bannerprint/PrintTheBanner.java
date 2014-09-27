@@ -6,11 +6,11 @@ public class PrintTheBanner {
     Scanner KB = new Scanner(System.in);
     final char FIRSTCHARACTER = 'A';
     String[][] characters = new String[][]{
-        {"   A   ","BBBB "},
-        {"  A A  ","B   B"},
-        {"  AAA  ","BBBB "},
-        {" A   A ","B   B"},
-        {"A     A","BBBB "}};
+        {"   A   ","BBBB "," CCC ","DDDD ","EEEEE","FFFFF"," GGG ","H   H","IIIII","JJJJJ","K   K","L    ","M     M","N   N"," OOO ","PPPP "," QQQ ","RRRR "," SSSS","TTTTT","U   U","VVVVV","WWWWW","X   X","Y   Y","ZZZZZ"},
+        {"  A A  ","B   B","C   C","D   D","E    ","F    ","G    ","H   H","  I  ","  J  ","K  K ","L    ","M M M M","N N N","O   O","P   P","Q   Q","R   R","S    ","  T  ","U   U","VVVVV","WWWWW"," X X "," Y Y ","   Z "},
+        {"  AAA  ","BBBB ","C    ","D   D","EEE  ","FFF  ","G  GG","HHHHH","  I  ","  J  ","KKK  ","L    ","M  M  M","N  NN","O   O","PPPPP","Q   Q","RRRR "," SSS ","  T  ","U   U","VVVVV","WWWWW","  X  ","  Y  ","  Z  "},
+        {" A   A ","B   B","C   C","D   D","E    ","F    ","G   G","H   H","  I  ","J J  ","K  K ","L    ","M     M","N   N","O   O","P    ","Q  QQ","R   R","    S","  T  ","U   U","VVVVV","WWWWW"," X X ","  Y  "," Z   "},
+        {"A     A","BBBB "," CCC ","DDDD ","EEEEE","F    "," GGG ","H   H","IIIII"," J   ","K   K","LLLLL","M     M","N   N"," OOO ","P    "," QQQQ","R   R","SSSS ","  T  "," UUU ","VVVVV","WWWWW","X   X","  Y  ","ZZZZZ"}};
     
     public void printIt(){
         String inputString;
