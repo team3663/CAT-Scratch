@@ -25,32 +25,55 @@ public class C_driveEncoder extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         RobotMap.leftEncoder.reset();
+        System.out.println("driving");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        driveTrainSS.driveF(0.3);
-        currTick = RobotMap.leftEncoder.getRaw();
-        if (currTick >= amount)
+        if (amount > 0)
         {
-            driveTrainSS.driveF(-0.1);
+            driveTrainSS.driveF(0.3);
+            currTick = RobotMap.leftEncoder.getRaw();
+            if (currTick >= amount)
+            {
+                driveTrainSS.driveF(-0.3);
+            }
+        }
+        else if (amount < 0)
+        {
+            driveTrainSS.driveF(-0.3);
+            currTick = RobotMap.leftEncoder.getRaw();
+            if (currTick <= amount)
+            {
+                driveTrainSS.driveF(0.3);
+            }
         }
         System.out.println("encoderTicks: " + currTick);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (currTick >= amount)
+        if (amount > 0)
         {
-            driveTrainSS.driveF(0);
-            currTick = RobotMap.leftEncoder.getRaw();
-            System.out.println("EncoderTicks: " + currTick);
-            return true;
+            if (currTick >= amount)
+            {
+                driveTrainSS.driveF(0);
+                currTick = RobotMap.leftEncoder.getRaw();
+                System.out.println("EncoderTicks: " + currTick);
+                return true;
+            }
         }
-        else
+        else if (amount < 0)
         {
-            return false;
+            if (currTick <= amount)
+            {
+                driveTrainSS.driveF(0);
+                currTick = RobotMap.leftEncoder.getRaw();
+                System.out.println("EncoderTicks: " + currTick);
+                return true;
+            }
         }
+        return false;
     }
 
     // Called once after isFinished returns true

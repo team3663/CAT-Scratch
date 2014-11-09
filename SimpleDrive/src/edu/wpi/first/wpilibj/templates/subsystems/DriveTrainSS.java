@@ -23,28 +23,24 @@ public class DriveTrainSS extends Subsystem {
         setDefaultCommand(new C_driveJoystick());
     }
     
-    public void driveF(double speed)
+    public void driveFR(double speed)
     {
-        RobotMap.leftMotor1.set(-speed);
-        RobotMap.leftMotor2.set(-speed);
-        RobotMap.rightMotor1.set(speed);
-        RobotMap.rightMotor2.set(speed);
-    }
-    
-    public void turnR(double speed)
-    {
-        RobotMap.leftMotor1.set(-speed);
-        RobotMap.leftMotor2.set(-speed);
         RobotMap.rightMotor1.set(-speed);
-        RobotMap.rightMotor2.set(-speed);
     }
     
-    public void turnL(double speed)
+    public void driveFL(double speed)
     {
-        RobotMap.leftMotor1.set(speed);
-        RobotMap.leftMotor2.set(speed);
+        RobotMap.leftMotor2.set(-speed);
+    }
+    
+    public void driveRR(double speed)
+    {
         RobotMap.rightMotor1.set(speed);
-        RobotMap.rightMotor2.set(speed);
+    }
+    
+    public void driveRL(double speed)
+    {
+        RobotMap.leftMotor2.set(speed);
     }
     
     public void arcade(Joystick driveStick)

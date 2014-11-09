@@ -4,10 +4,10 @@ package edu.wpi.first.wpilibj.templates;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.templates.commands.CG_paceEncoder;
-import edu.wpi.first.wpilibj.templates.commands.C_driveEncoder;
-import edu.wpi.first.wpilibj.templates.commands.C_turnLeftEncoder;
-import edu.wpi.first.wpilibj.templates.commands.C_turnRightEncoder;
+import edu.wpi.first.wpilibj.templates.commands.C_driveFR;
+import edu.wpi.first.wpilibj.templates.commands.C_driveFL;
+import edu.wpi.first.wpilibj.templates.commands.C_driveRR;
+import edu.wpi.first.wpilibj.templates.commands.C_driveRL;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -22,20 +22,17 @@ public class OI {
     // Button button = new JoystickButton(stick, buttonNumber);
     public Joystick driveStick = new Joystick(1);
     
-    Button button1 = new JoystickButton(driveStick,1);
-    Button button2 = new JoystickButton(driveStick,2);
     Button button3 = new JoystickButton(driveStick,3);
     Button button4 = new JoystickButton(driveStick,4);
-    Button button11 = new JoystickButton(driveStick,11);
+    Button button5 = new JoystickButton(driveStick,5);
+    Button button6 = new JoystickButton(driveStick,6);
     
     public OI()
     {
-        button1.whileHeld(new C_driveEncoder(6000));
-        button3.whileHeld(new C_turnLeftEncoder(6000));
-        button4.whileHeld(new C_turnRightEncoder(6000));
-        button2.whileHeld(new C_driveEncoder(-6000));
-        
-        button11.whileHeld(new CG_paceEncoder());
+        button3.whileHeld(new C_driveFR(0.5));
+        button4.whileHeld(new C_driveFL(0.5));
+        button5.whileHeld(new C_driveRR(0.5));
+        button6.whileHeld(new C_driveRL(0.5));
     }
     
 }
