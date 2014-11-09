@@ -2,7 +2,10 @@ package salesmandilema;
 
 import java.util.Random;
 
-public class RandomGuesses {
+public class RandomGuesses implements TSP{
+
+    public String description (){return "Random";}
+    
     public int[] solveIt(int[][] cityDistances){
         int numberOfCities = cityDistances[0].length;
         int[] solution = new int[numberOfCities+1];

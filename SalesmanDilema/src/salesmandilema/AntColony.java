@@ -2,7 +2,10 @@ package salesmandilema;
 
 import java.util.Random;
 
-public class AntColony {
+public class AntColony implements TSP{
+    
+    public String description() {return "Ant Colony";}
+    
     public int[] solveIt(int[][] cityDistances){
         
         int numberOfCities = cityDistances[0].length;
